@@ -1,21 +1,10 @@
-﻿using Microsoft.Win32;
-using MvvmCross;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
+﻿using MvvmCross.ViewModels;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ProxySuper.Core.Models.Hosts;
 using ProxySuper.Core.Models.Projects;
 using ProxySuper.Core.Services;
-using ProxySuper.Core.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxySuper.Core.Models
 {
@@ -44,6 +33,9 @@ namespace ProxySuper.Core.Models
             }
         }
 
+        [JsonProperty("v2raySettings")]
+        public V2raySettings V2raySettings { get; set; }
+
         [JsonProperty("settings")]
         public XraySettings XraySettings { get; set; }
 
@@ -53,6 +45,12 @@ namespace ProxySuper.Core.Models
         [JsonProperty("naiveProxySettings")]
         public NaiveProxySettings NaiveProxySettings { get; set; }
 
+        [JsonProperty("brook")]
+        public BrookSettings BrookSettings { get; set; }
+
+        [JsonProperty("mtProtoGoSettings")]
+        public MTProtoGoSettings MTProtoGoSettings { get; set; }
+
 
         [JsonIgnore]
         public ProjectType Type
@@ -61,9 +59,15 @@ namespace ProxySuper.Core.Models
             {
                 if (XraySettings != null) return ProjectType.Xray;
 
+                if (V2raySettings != null) return ProjectType.V2ray;
+
                 if (TrojanGoSettings != null) return ProjectType.TrojanGo;
 
-                return ProjectType.NaiveProxy;
+                if (NaiveProxySettings != null) return ProjectType.NaiveProxy;
+
+                if (MTProtoGoSettings != null) return ProjectType.MTProtoGo;
+
+                return ProjectType.Brook;
             }
         }
 
@@ -81,8 +85,22 @@ namespace ProxySuper.Core.Models
             }
         }
 
+        [JsonIgnore]
+        public Action OnSave { get; set; } = () => { };
+
         public string GetShareLink()
         {
+            if (Type == ProjectType.V2ray)
+            {
+                StringBuilder strBuilder = new StringBuilder();
+                V2raySettings.Types.ForEach(type =>
+                {
+                    var link = ShareLink.Build(type, V2raySettings);
+                    strBuilder.AppendLine(link);
+                });
+                return strBuilder.ToString();
+            }
+
             if (Type == ProjectType.Xray)
             {
                 StringBuilder strBuilder = new StringBuilder();

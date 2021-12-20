@@ -5,11 +5,6 @@ using ProxySuper.Core.Models;
 using ProxySuper.Core.Models.Hosts;
 using ProxySuper.Core.Models.Projects;
 using ProxySuper.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxySuper.Core.ViewModels
 {
@@ -23,6 +18,8 @@ namespace ProxySuper.Core.ViewModels
         public IMvxNavigationService NavigationService { get; }
 
         public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        public IMvxCommand SaveAndInstallCommand => new MvxCommand(SaveAndInstall);
 
         public string Id { get; set; }
 
@@ -47,6 +44,18 @@ namespace ProxySuper.Core.ViewModels
                 Host = this.Host,
                 TrojanGoSettings = Settings,
             });
+        }
+
+        private void SaveAndInstall()
+        {
+            var record = new Record
+            {
+                Id = this.Id,
+                Host = this.Host,
+                TrojanGoSettings = Settings,
+            };
+            NavigationService.Close(this, record);
+            NavigationService.Navigate<TrojanGoInstallViewModel, Record>(record);
         }
     }
 

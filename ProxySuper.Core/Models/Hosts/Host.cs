@@ -1,10 +1,7 @@
 ﻿using Microsoft.Win32;
 using MvvmCross.Commands;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 

@@ -1,17 +1,10 @@
-﻿using Microsoft.Win32;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using ProxySuper.Core.Models;
 using ProxySuper.Core.Models.Hosts;
 using ProxySuper.Core.Models.Projects;
 using ProxySuper.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxySuper.Core.ViewModels
 {
@@ -42,6 +35,8 @@ namespace ProxySuper.Core.ViewModels
 
         public IMvxCommand SaveCommand => new MvxCommand(Save);
 
+        public IMvxCommand SaveAndInstallCommand => new MvxCommand(SaveAndInstall);
+
         private void Save()
         {
             NavigationService.Close(this, new Record
@@ -50,6 +45,19 @@ namespace ProxySuper.Core.ViewModels
                 Host = Host,
                 NaiveProxySettings = Settings
             });
+        }
+
+
+        private void SaveAndInstall()
+        {
+            var record = new Record
+            {
+                Id = this.Id,
+                Host = this.Host,
+                NaiveProxySettings = Settings,
+            };
+            NavigationService.Close(this, record);
+            NavigationService.Navigate<NaiveProxyInstallViewModel, Record>(record);
         }
     }
 }

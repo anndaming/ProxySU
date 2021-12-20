@@ -5,43 +5,12 @@
   　　<AllowedReferenceRelatedFileExtensions>
 　　　　<!-- 阻止默认的 XML 和 PDB 文件复制到 RELEASE 的输出目录. 只有*.allowedextension 扩展名的文件可以被包含, 当然这个扩展的文件并不存在.-->
 　　　　.allowedextension
-　　</AllowedReferenceRelatedFileExtensions>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B083EBFD-2925-46C9-8B00-E2C1300CEBA1}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ProxySuper.WPF</RootNamespace>
-    <AssemblyName>ProxySuper.WPF</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
+　　</AllowedReferenceRelatedFileExtensions><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProjectGuid>{B083EBFD-2925-46C9-8B00-E2C1300CEBA1}</ProjectGuid><OutputType>WinExe</OutputType><RootNamespace>ProxySuper.WPF</RootNamespace><AssemblyName>ProxySuper.WPF</AssemblyName><TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><WarningLevel>4</WarningLevel><AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects><Deterministic>true</Deterministic><NuGetPackageImportStamp></NuGetPackageImportStamp><IsWebBootstrapper>false</IsWebBootstrapper><TargetFrameworkProfile /><PublishUrl>publish\</PublishUrl><Install>true</Install><InstallFrom>Disk</InstallFrom><UpdateEnabled>false</UpdateEnabled><UpdateMode>Foreground</UpdateMode><UpdateInterval>7</UpdateInterval><UpdateIntervalUnits>Days</UpdateIntervalUnits><UpdatePeriodically>false</UpdatePeriodically><UpdateRequired>false</UpdateRequired><MapFileExtensions>true</MapFileExtensions><ApplicationRevision>0</ApplicationRevision><ApplicationVersion>1.0.0.%2a</ApplicationVersion><UseApplicationTrust>false</UseApplicationTrust><BootstrapperEnabled>true</BootstrapperEnabled></PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -58,6 +27,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>ProxySU.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ProxySuper.WPF.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MvvmCross, Version=7.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,11 +78,17 @@
     <Compile Include="Controls\HostControl.xaml.cs">
       <DependentUpon>HostControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressControl.xaml.cs">
+      <DependentUpon>ProgressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ShadowSocksControl.xaml.cs">
       <DependentUpon>ShadowSocksControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Trojan_TCP_Control.xaml.cs">
       <DependentUpon>Trojan_TCP_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\V2raySettingsControl.xaml.cs">
+      <DependentUpon>V2raySettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VLESS_gRPC_Control.xaml.cs">
       <DependentUpon>VLESS_gRPC_Control.xaml</DependentUpon>
@@ -142,40 +120,74 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Brook\BrookConfigView.xaml.cs">
+      <DependentUpon>BrookConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Brook\BrookEditorView.xaml.cs">
+      <DependentUpon>BrookEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Brook\BrookInstallView.xaml.cs">
+      <DependentUpon>BrookInstallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EnableRootView.xaml.cs">
+      <DependentUpon>EnableRootView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NaiveProxyConfigView.xaml.cs">
+    <Compile Include="Views\MTProxyGo\MTProxyGoConfigView.xaml.cs">
+      <DependentUpon>MTProxyGoConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MTProxyGo\MTProxyGoEditorView.xaml.cs">
+      <DependentUpon>MTProxyGoEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MTProxyGo\MTProxyGoInstallView.xaml.cs">
+      <DependentUpon>MTProxyGoInstallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NaiveProxy\NaiveProxyConfigView.xaml.cs">
       <DependentUpon>NaiveProxyConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NaiveProxyEditorView.xaml.cs">
+    <Compile Include="Views\NaiveProxy\NaiveProxyEditorView.xaml.cs">
       <DependentUpon>NaiveProxyEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NaiveProxyInstallerView.xaml.cs">
-      <DependentUpon>NaiveProxyInstallerView.xaml</DependentUpon>
+    <Compile Include="Views\NaiveProxy\NaiveProxyInstallView.xaml.cs">
+      <DependentUpon>NaiveProxyInstallView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShareLinkView.xaml.cs">
       <DependentUpon>ShareLinkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrojanGoConfigView.xaml.cs">
+    <Compile Include="Views\TrojanGo\TrojanGoConfigView.xaml.cs">
       <DependentUpon>TrojanGoConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrojanGoEditorView.xaml.cs">
+    <Compile Include="Views\TrojanGo\TrojanGoEditorView.xaml.cs">
       <DependentUpon>TrojanGoEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TrojanGoInstallerView.xaml.cs">
-      <DependentUpon>TrojanGoInstallerView.xaml</DependentUpon>
+    <Compile Include="Views\TrojanGo\TrojanGoInstallView.xaml.cs">
+      <DependentUpon>TrojanGoInstallView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\XrayEditorView.xaml.cs">
+    <Compile Include="Views\V2ray\V2rayConfigView.xaml.cs">
+      <DependentUpon>V2rayConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\V2ray\V2rayEditorView.xaml.cs">
+      <DependentUpon>V2rayEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\V2ray\V2rayInstallView.xaml.cs">
+      <DependentUpon>V2rayInstallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Xray\XrayEditorView.xaml.cs">
       <DependentUpon>XrayEditorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\XrayConfigView.xaml.cs">
+    <Compile Include="Views\Xray\XrayConfigView.xaml.cs">
       <DependentUpon>XrayConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\XrayInstallerView.xaml.cs">
-      <DependentUpon>XrayInstallerView.xaml</DependentUpon>
+    <Compile Include="Views\Xray\XrayInstallView.xaml.cs">
+      <DependentUpon>XrayInstallView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\HostControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +198,10 @@
     <Page Include="Controls\Trojan_TCP_Control.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\V2raySettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\VLESS_gRPC_Control.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +248,22 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\Brook\BrookConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Brook\BrookEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Brook\BrookInstallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EnableRootView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,15 +287,27 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\NaiveProxyConfigView.xaml">
+    <Page Include="Views\MTProxyGo\MTProxyGoConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NaiveProxyEditorView.xaml">
+    <Page Include="Views\MTProxyGo\MTProxyGoEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NaiveProxyInstallerView.xaml">
+    <Page Include="Views\MTProxyGo\MTProxyGoInstallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NaiveProxy\NaiveProxyConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NaiveProxy\NaiveProxyEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NaiveProxy\NaiveProxyInstallView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,27 +315,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrojanGoConfigView.xaml">
+    <Page Include="Views\TrojanGo\TrojanGoConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrojanGoEditorView.xaml">
+    <Page Include="Views\TrojanGo\TrojanGoEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TrojanGoInstallerView.xaml">
+    <Page Include="Views\TrojanGo\TrojanGoInstallView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\XrayEditorView.xaml">
+    <Page Include="Views\V2ray\V2rayConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\XrayConfigView.xaml">
+    <Page Include="Views\V2ray\V2rayEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\XrayInstallerView.xaml">
+    <Page Include="Views\V2ray\V2rayInstallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Xray\XrayEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Xray\XrayConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Xray\XrayInstallView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,6 +382,114 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Templates\trojan-go\trojan-go.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\base.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\caddy\base.caddyfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\00_log\00_log.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\01_api\01_api.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\02_dns\02_dns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\03_routing\03_routing.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\04_policy\04_policy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\05_inbounds\05_inbounds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\06_outbounds\06_outbounds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\06_outbounds\VLESS_HTTP2_TLS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\06_outbounds\VLESS_TCP_TLS_WS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\07_transport\07_transport.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\08_stats\08_stats.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\client\09_reverse\09_reverse.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\00_log\00_log.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\01_api\01_api.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\02_dns\02_dns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\03_routing\03_routing.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\04_policy\04_policy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\05_inbounds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\Shadowsocks-AEAD.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\Trojan_TCP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\Trojan_WS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VLESS_gRPC.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VLESS_HTTP2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VLESS_KCP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VLESS_TCP_TLS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VLESS_WS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VMESS_HTTP2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VMESS_KCP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VMESS_TCP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\05_inbounds\VMESS_WS.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\06_outbounds\06_outbounds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\07_transport\07_transport.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\08_stats\08_stats.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\v2ray\server\09_reverse\09_reverse.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Templates\xray\base.json">
